@@ -1,0 +1,16 @@
+# Binaries
+caddy-configurator
+*.test
+*.out
+
+# Frontend build deps and output (dist is rebuilt via `npm --prefix web run build`;
+# web/dist/.gitkeep is committed so go:embed works on a fresh clone)
+web/node_modules/
+web/dist/*
+!web/dist/.gitkeep
+
+# macOS
+.DS_Store
+
+# Go workspace leftovers
+/vendor/

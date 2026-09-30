@@ -1,0 +1,30 @@
+services:
+  caddy:
+    image: caddy:2-alpine
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./generated/Caddyfile:/etc/caddy/Caddyfile:ro
+      - ./data/app:/var/www/app:ro
+      - ./data/blog:/var/www/blog:ro
+      - ./data/web:/var/www/html:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      - api
+      - blog
+    restart: unless-stopped
+  api:
+    image: node:20-alpine
+    environment:
+      NODE_ENV: production
+    restart: unless-stopped
+  blog:
+    image: php:8.3-fpm
+    volumes:
+      - ./data/blog:/var/www/blog
+    restart: unless-stopped
+volumes:
+  caddy_data:
+  caddy_config:

@@ -1,0 +1,27 @@
+{
+	email admin@example.com
+}
+
+api.example.com {
+	reverse_proxy api:3000
+}
+
+app.example.com {
+	root * /var/www/app
+	try_files {path} {path}/ /index.html
+	file_server
+	log
+}
+
+http://blog.example.com {
+	root * /var/www/blog
+	php_fastcgi blog:9000
+	file_server
+	log
+}
+
+example.com, www.example.com {
+	root * /var/www/html
+	file_server
+	log
+}
