@@ -1,5 +1,5 @@
-# Binaries
-caddy-configurator
+# Binaries (rooted: must not match openspec/changes/<name> dirs)
+/caddy-configurator
 *.test
 *.out
 
